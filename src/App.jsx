@@ -1,12 +1,16 @@
-import { Card } from "./component/Card";
-import Poster from "./component/Poster";
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Home } from './component/Home';
+import { DetailCard } from './component/DetailCard';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className=" max-w-full">
-      <Poster />
-      <Card/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<Home/>} />
+      <Route path="/surat/:nomor" element={<DetailCard/>} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
