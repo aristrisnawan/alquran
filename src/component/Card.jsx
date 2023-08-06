@@ -5,7 +5,7 @@ import {  useNavigate  } from "react-router-dom";
 export const Card = () => {
   const [data, setData] = useState([]);
   const apiUrl = "https://equran.id/api/v2/surat";
-  const navigate = useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();

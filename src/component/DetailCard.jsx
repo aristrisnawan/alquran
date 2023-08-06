@@ -15,40 +15,41 @@ export const DetailCard = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(apiUrl);
-      console.log(response.data);
-      setDetail(response.data);
+      setDetail(response?.data?.data);
     } catch (error) {
       console.log("Error", error);
     }
   };
   return (
     <div className="font-poppins mx-4">
-        {console.log(detail)}
       <div className="text-center my-9">
-        <p className=" font-bold text-3xl">النصر</p>
-        <p className=" text-xl font-semibold my-2">An-Nasr</p>
-        <p>Madinah - 3</p>
+        <p className=" font-bold text-3xl">{detail?.nama}</p>
+        <p className=" text-xl font-semibold my-2">{detail?.namaLatin}</p>
+        <p>
+          {detail?.tempatTurun} - {detail?.jumlahAyat}
+        </p>
       </div>
-      <hr className=" border-t-2" />
-      <div>
-        <div className=" w-10 h-10 bg-slate-500 flex items-center justify-center">
-          1
-        </div>
-        <div className="text-right text-xl my-3 font-semibold">
-          تَبٰرَكَ الَّذِيْ بِيَدِهِ الْمُلْكُۖ وَهُوَ عَلٰى كُلِّ شَيْءٍ
-          قَدِيْرٌۙ
-        </div>
-        <div className=" mb-4">
-          <p className=" my-4">
-            Tabārakal-lażī biyadihil-mulk(u), wa huwa ‘alā kulli syaiin
-            qadīr(un).
-          </p>
-          <p>
-            Mahaberkah Zat yang menguasai (segala) kerajaan dan Dia Mahakuasa
-            atas segala sesuatu,
-          </p>
-        </div>
-      </div>
+      {detail?.ayat?.map((datas, idx) => (
+        <>
+          <hr className=" border-t-2" key={idx}/>
+          <div>
+            <div className=" w-10 h-10 bg-slate-500 flex items-center justify-center">
+              {datas?.nomorAyat}
+            </div>
+            <div className="text-right text-xl my-3 font-semibold">
+              {datas?.teksArab}
+            </div>
+            <div className=" mb-4">
+              <p className=" my-4">
+                {datas?.teksLatin}
+              </p>
+              <p>
+                {datas?.teksIndonesia}
+              </p>
+            </div>
+          </div>
+        </>
+      ))}
     </div>
   );
 };
